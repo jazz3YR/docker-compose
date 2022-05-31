@@ -6,3 +6,11 @@ services:
     restart: always
     container_name: custome-alpine
     entrypoint: tail -f /dev/null
+
+  databases:
+    image: postgres:latest
+    container_name: postgress-db
+    ports:
+      - "543"
+    volumes:
+      - ../dump:/tmp/
