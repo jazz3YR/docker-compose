@@ -10,7 +10,9 @@ services:
   databases:
     image: postgres:latest
     container_name: postgress-db
+    environment:
+      - POSTGRES_PASSWORD=superpass
     ports:
-      - "543"
+      - "5432:5432"
     volumes:
       - ../dump:/tmp/
