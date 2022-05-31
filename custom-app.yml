@@ -3,6 +3,6 @@ version: "3"
 services:
   distro:
     image: alpine
-    restrat: always
+    restart: always
     container_name: custome-alpine
     entrypoint: tail -f /dev/null
