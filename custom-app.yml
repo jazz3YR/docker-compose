@@ -9,6 +9,7 @@ services:
 
   databases:
     image: postgres:latest
+    restart: always
     container_name: postgress-db
     environment:
       - POSTGRES_PASSWORD=superpass
@@ -16,3 +17,22 @@ services:
       - "5432:5432"
     volumes:
       - ../dump:/tmp/
+
+  web:
+    image: nginx
+    restart: always
+    container_name: nginx_web
+    ports:
+      - "8081:80"
+    volumes:
+      - ./mysite.template:/etc/nginx/conf.d/mysite.template
+    environment:
+      - NGINX_HOST=sample.com
+      - NGINX_port=80
+    links:
+      - databases:db
+      - distro
+
+volumes:
+  data:
+    external: true
